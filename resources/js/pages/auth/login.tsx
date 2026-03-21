@@ -1,5 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
-import { Chrome, Github, Facebook, Lock, Mail } from 'lucide-react';
+import { Github, Facebook, Lock, Mail } from 'lucide-react';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -13,6 +13,7 @@ import AuthLayout from '@/layouts/auth-layout';
 import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
+import {Chrome, GithubIcon, Google, GoogleGmail, GoogleIcon, MetaIcon} from 'brand-logos';
 
 type Props = {
     status?: string;
@@ -122,7 +123,7 @@ export default function Login({
                         </div>
 
                         {canRegister && (
-                            <div className="space-y-3 text-center text-sm">
+                            <div className="space-y-3 text-sm">
                                 <p className="text-muted-foreground">
                                     Don&apos;t have an account?{' '}
                                     <TextLink href={register()} tabIndex={5}>
@@ -144,7 +145,7 @@ export default function Login({
                         )}
 
                         {!canRegister && canResetPassword && (
-                            <div className="text-center text-sm">
+                            <div className=" text-sm">
                                 <TextLink
                                     href={request()}
                                     className="text-xs text-muted-foreground"
@@ -156,14 +157,7 @@ export default function Login({
                         )}
 
                         <div className="space-y-4">
-                            <div className="flex items-center gap-3">
-                                <Separator className="flex-1" />
-                                <span className="shrink-0 text-xs text-muted-foreground">
-                                    Or continue with
-                                </span>
-                                <Separator className="flex-1" />
-                            </div>
-                            <div className="flex justify-center gap-3">
+                            <div className="flex justify-start gap-3">
                                 <Button
                                     type="button"
                                     variant="outline"
@@ -173,7 +167,7 @@ export default function Login({
                                     title="Google sign-in is not configured"
                                     aria-label="Google sign-in is not configured"
                                 >
-                                    <Chrome className="size-5 text-[#4285F4]" />
+                                    <GoogleIcon />
                                 </Button>
                                 <Button
                                     type="button"
@@ -184,7 +178,7 @@ export default function Login({
                                     title="GitHub sign-in is not configured"
                                     aria-label="GitHub sign-in is not configured"
                                 >
-                                    <Github className="size-5" />
+                                    <GithubIcon className="size-5" />
                                 </Button>
                                 <Button
                                     type="button"
@@ -195,7 +189,7 @@ export default function Login({
                                     title="Facebook sign-in is not configured"
                                     aria-label="Facebook sign-in is not configured"
                                 >
-                                    <Facebook className="size-5 text-[#1877F2]" />
+                                    <MetaIcon className="size-5 text-[#1877F2]" />
                                 </Button>
                             </div>
                         </div>
