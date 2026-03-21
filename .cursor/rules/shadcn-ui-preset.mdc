@@ -1,0 +1,50 @@
+---
+description: shadcn/ui Laravel preset — use preset components only; never reinit or override theme
+globs:
+  - resources/js/**/*.tsx
+  - resources/js/**/*.jsx
+  - resources/css/**/*.css
+  - vite.config.ts
+  - tailwind.config.js
+  - tailwind.config.ts
+  - components.json
+alwaysApply: false
+---
+
+# UI — shadcn preset (do not deviate)
+
+This project uses a pre-initialized **shadcn/ui** preset for Laravel. The preset is installed and configured. **Never reinitialize or override it.**
+
+## The law
+
+- **Always** use components from the existing shadcn/ui preset.
+- **Never** change the preset theme, CSS variables, or Tailwind config to “fit” a one-off component.
+- **Never** use raw HTML where a shadcn component exists (`Button`, `Input`, `Card`, etc.).
+- **Never** use another UI library (MUI, Ant Design, Chakra, Flowbite, etc.).
+- **Never** use inline styles — use Tailwind utilities aligned with the preset palette.
+
+## Adding components
+
+- Add components only with: `npx shadcn@latest add [component]`
+- **Do not** paste shadcn component source from blogs or docs into the repo.
+- If something is not in the preset, build it from existing primitives + Tailwind.
+
+## Styling
+
+- Use CSS variables from the preset (`--background`, `--foreground`, `--primary`, etc.).
+- **Do not** hardcode hex colors — use preset tokens.
+- Dark mode is handled by the preset — **do not** add custom `dark:` rules that fight the preset.
+- Keep spacing, radius, and shadows consistent with preset defaults.
+
+## Component usage
+
+- Import from `@/components/ui` (e.g. `Button`, `Input`, `Card`, `Badge`, `Dialog`).
+- Compose complex UI from primitives; do not duplicate what shadcn already provides.
+- Keep shadcn output under `resources/js/components/ui` — **do not** move or restructure that tree.
+
+## Do not touch (preset-managed)
+
+- `components.json`
+- Tailwind wiring: `tailwind.config.js` / `tailwind.config.ts` if present, and `vite.config.ts` (e.g. `@tailwindcss/vite`) — preset-managed; do not rework to “fix” one component
+- The CSS variable / theme block in `resources/css/app.css` (Tailwind v4 may use CSS-first config here instead of a separate Tailwind file)
+- Files under `resources/js/components/ui` that were **auto-generated** by the preset (do not rewrite them by hand to match random examples online)
