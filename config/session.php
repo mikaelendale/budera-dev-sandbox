@@ -226,8 +226,12 @@ return [
     |
     | Supported: "json", "php"
     |
+    | Passport OAuth stores League\OAuth2\Server\RequestTypes\AuthorizationRequestInterface
+    | in session between GET /oauth/authorize and POST approval; JSON serialization turns that
+    | object into an array and breaks approval with a TypeError. Use "php" when using OAuth.
+    |
     */
 
-    'serialization' => 'json',
+    'serialization' => env('SESSION_SERIALIZATION', 'php'),
 
 ];

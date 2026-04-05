@@ -7,16 +7,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
+import { orionFieldClass, orionPrimaryButtonClass } from '@/lib/orion-auth-classes';
+import { cn } from '@/lib/utils';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
-        <AuthLayout
-            title="Forgot password"
-            description="Enter your email to receive a password reset link"
-        >
+        <AuthLayout variant="orion-forgot-password">
             <Head title="Forgot password" />
+
+            <p className="mb-6 text-[13px] leading-relaxed text-muted-foreground">
+                Enter your email and we will send a reset link.
+            </p>
 
             {status && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
@@ -29,7 +32,12 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     {({ processing, errors }) => (
                         <>
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label
+                                    htmlFor="email"
+                                    className="text-[13px] text-muted-foreground"
+                                >
+                                    Email address
+                                </Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -37,6 +45,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                                     autoComplete="off"
                                     autoFocus
                                     placeholder="email@example.com"
+                                    className={cn(orionFieldClass)}
                                 />
 
                                 <InputError message={errors.email} />
@@ -44,7 +53,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
                             <div className="my-6 flex items-center justify-start">
                                 <Button
-                                    className="w-full"
+                                    className={cn('w-full', orionPrimaryButtonClass)}
                                     disabled={processing}
                                     data-test="email-password-reset-link-button"
                                 >

@@ -1,0 +1,30 @@
+---
+description: What Budera (budera.ai) is — product context for the AI agent
+alwaysApply: true
+---
+
+# Budera — product context (informational)
+
+**Budera** is **“the bank account for AI agents.”** It is **not** a generic payment gateway or neobank for humans alone. It is a **persistent, programmable financial identity at the API layer** so **non-human principals** (agents) can hold, receive, and move money under **rules humans approve**.
+
+**Core idea:** Payment rails today assume **human** actors. Agents now book travel, pay invoices, and run spend — but they need **wallet + ledger + controls + audit** built for **agents + their operators**, not a one-off Stripe integration.
+
+**Three product layers (conceptual):**
+
+- **Identity** — Each agent (or product) gets a **wallet** / financial identity; stable across sessions; often tied to an **AI company** tenant and a **human end user** who authorizes.
+- **Funding** — humans **link external bank** once; funds move to agent wallets on demand or schedule.
+- **Spend controls** — programmable limits, categories, approvals, velocity; **full audit** of what the agent did.
+
+**Who touches the product (actors):**
+
+- **AI companies** — integrate via API, manage keys, policies, webhooks.
+- **Human end users** — authorize agents, link bank, set limits, revoke access.
+- **Agents** — act via **API credentials** (not human logins); every money movement is auditable.
+- **Budera internal** — ops, risk, **live** access approvals.
+- **Bank / sponsor partners** — KYB, compliance, reporting (read-heavy portals).
+
+**Sandbox vs live:** Defaults are **sandbox**; **live** money and keys are **approval-gated** — see `docs/tech-stack.md`.
+
+**Depth:** `docs/budera-strategy-full.md` (strategy), `docs/budera-dev-timeline.md` (design-first build plan), `docs/tech-stack.md` (stack decisions).
+
+When suggesting features or code, align with **money safety**, **tenant isolation**, **auditability**, and **agent vs human** boundaries — not generic CRUD.

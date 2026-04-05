@@ -17,9 +17,12 @@
 
 @theme {
     --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'DM Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+
+    --font-orion:
+        'Sora', ui-sans-serif, system-ui, sans-serif;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -87,7 +90,7 @@
     --primary-foreground:
         oklch(0.979 0.021 166.113);
     --secondary:
-        oklch(0.967 0.001 286.375);
+        oklch(0.987 0.001 286.375);
     --secondary-foreground:
         oklch(0.21 0.006 285.885);
     --muted:
@@ -118,7 +121,7 @@
     --chart-5:
         oklch(0.437 0.078 188.216);
     --radius:
-        0.875rem;
+        0.5rem;
     --sidebar:
         oklch(0.986 0.002 67.8);
     --sidebar-foreground:
@@ -213,6 +216,23 @@
     }
   html {
     @apply font-sans;
+    }
+}
+
+/* Orion auth: grid uses theme foreground so it adapts in light / dark */
+@layer components {
+    .orion-grid-bg {
+        background-image:
+            linear-gradient(
+                color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+                transparent 1px
+            );
+        background-size: 28px 28px;
     }
 }
 

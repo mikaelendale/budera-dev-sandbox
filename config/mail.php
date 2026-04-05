@@ -49,6 +49,20 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
+        /*
+        | Mailpit (or similar) local SMTP. Use MAIL_MAILER=mailpit or set MAIL_HOST/MAIL_PORT to match.
+        */
+        'mailpit' => [
+            'transport' => 'smtp',
+            'host' => env('MAILPIT_SMTP_HOST', '127.0.0.1'),
+            'port' => env('MAILPIT_SMTP_PORT', 1025),
+            'encryption' => null,
+            'username' => env('MAILPIT_SMTP_USERNAME'),
+            'password' => env('MAILPIT_SMTP_PASSWORD'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],

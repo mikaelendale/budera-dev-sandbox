@@ -3,6 +3,7 @@ import AppLogoIcon from '@/components/app-logo-icon';
 import { home } from '@/routes';
 import type { AuthLayoutProps } from '@/types';
 import { cn } from '@/lib/utils';
+import { ModeToggle } from '@/components/mode-toggle';
 
 export default function AuthSplitLayout({
     children,
@@ -12,7 +13,8 @@ export default function AuthSplitLayout({
     const { name } = usePage().props as { name: string };
 
     return (
-        <div className="relative min-h-dvh bg-background lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div className="relative min-h-dvh bg-secondary lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+            <ModeToggle className='absolute top-4 right-4' />
             {/* Form column — left */}
             <div className="flex min-h-dvh flex-col px-6 py-10 sm:px-10 lg:justify-center lg:px-12 xl:px-16">
                 <div className="mx-auto w-full max-w-md flex-1 lg:flex-none">
@@ -42,44 +44,52 @@ export default function AuthSplitLayout({
             </div>
 
             {/* Brand column — right */}
-            <div className="relative hidden p-4 lg:block lg:p-6">
+            <div className="relative hidden overflow-hidden p-4 lg:block lg:p-6">
                 <div
                     className={cn(
-                        'relative flex h-full min-h-[calc(100dvh-2rem)] flex-col justify-between overflow-hidden rounded-3xl',
-                        'bg-linear-to-br from-zinc-950 via-zinc-900 to-black text-white',
-                        'shadow-2xl shadow-black/20 ring-1 ring-white/10',
+                        'relative flex h-full min-h-[calc(100dvh-2rem)] flex-col justify-between overflow-hidden rounded-[2rem]',
+                        'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white',
+                        'shadow-2xl ring-1 shadow-black/20 ring-white/10',
                     )}
                 >
+                    {/* Light streak / mesh */}
                     <div
-                        className="pointer-events-none absolute inset-0 opacity-40 bg-[url('/images/auth/auth-background.png')] bg-cover bg-center"
-                        aria-hidden
+                        className="pointer-events-none absolute inset-0 opacity-40"
+                        style={{
+                            backgroundImage:
+                                'radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255,255,255,0.12), transparent 50%), radial-gradient(ellipse 60% 40% at 90% 20%, rgba(120,120,255,0.08), transparent 45%)',
+                        }}
                     />
 
-                    <div className="relative z-10 flex flex-1 flex-col px-10 pb-10 pt-12 xl:px-14 xl:pt-16">
+                    <div className="relative z-10 flex flex-1 flex-col px-10 pt-12 pb-10 xl:px-14 xl:pt-16">
                         <div className="flex flex-1 flex-col items-center text-center">
                             <div className="mb-6 flex size-28 items-center justify-center rounded-3xl bg-white/5 ring-1 ring-white/10 backdrop-blur-sm xl:size-36">
                                 <AppLogoIcon className="size-20 fill-white opacity-95 xl:size-24" />
                             </div>
-                            <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                            <p className="text-xs font-medium tracking-[0.2em] text-white/50 uppercase">
                                 {name}
                             </p>
-                            <h2 className="mt-4 max-w-md text-balance text-3xl font-semibold tracking-tight xl:text-4xl">
+                            <h2 className="mt-4 max-w-md text-3xl font-semibold tracking-tight text-balance xl:text-4xl">
                                 Welcome to {name}
                             </h2>
-                            <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-white/70">
-                                Ship organized dashboards and tools your team can
-                                maintain — clear structure, solid patterns, room to
-                                grow.
+                            <p className="mt-4 max-w-md text-sm leading-relaxed text-pretty text-white/70">
+                                Ship organized dashboards and internal tools
+                                your team can maintain — clear structure, solid
+                                patterns, and room to grow.
+                            </p>
+                            <p className="mt-3 max-w-md text-sm text-pretty text-white/55">
+                                Join builders who care about craft and velocity.
                             </p>
                         </div>
 
                         <div className="relative z-10 mt-10 rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md">
-                            <p className="text-lg font-medium leading-snug">
-                                Ready when you are — create an account in minutes.
+                            <p className="text-lg leading-snug font-medium">
+                                Ready when you are — create an account in
+                                minutes.
                             </p>
                             <p className="mt-2 text-sm text-white/60">
-                                Be among the first to experience a smoother path from
-                                idea to production.
+                                Be among the first to experience a smoother path
+                                from idea to production.
                             </p>
                             <div className="mt-5 flex items-center gap-2">
                                 <div className="flex -space-x-2">

@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/input-otp';
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth';
 import AuthLayout from '@/layouts/auth-layout';
+import { orionFieldClass, orionPrimaryButtonClass } from '@/lib/orion-auth-classes';
+import { cn } from '@/lib/utils';
 import { store } from '@/routes/two-factor/login';
 
 export default function TwoFactorChallenge() {
@@ -47,6 +49,7 @@ export default function TwoFactorChallenge() {
 
     return (
         <AuthLayout
+            variant="orion-two-factor"
             title={authConfigContent.title}
             description={authConfigContent.description}
         >
@@ -69,6 +72,7 @@ export default function TwoFactorChallenge() {
                                         placeholder="Enter recovery code"
                                         autoFocus={showRecoveryInput}
                                         required
+                                        className={cn(orionFieldClass)}
                                     />
                                     <InputError
                                         message={errors.recovery_code}
@@ -104,7 +108,7 @@ export default function TwoFactorChallenge() {
 
                             <Button
                                 type="submit"
-                                className="w-full"
+                                className={cn('w-full', orionPrimaryButtonClass)}
                                 disabled={processing}
                             >
                                 Continue

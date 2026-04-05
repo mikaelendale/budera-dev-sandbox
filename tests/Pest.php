@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Company;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 /*
@@ -14,8 +18,14 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
-    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->use(RefreshDatabase::class)
     ->in('Feature');
+
+pest()->extend(TestCase::class)
+    ->in('Architecture');
+
+pest()->extend(TestCase::class)
+    ->in('Concurrency');
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +56,29 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+/**
+ * Find the team-scoped Spatie role for a company (bypasses global role ambiguity).
+ */
+function teamRole(string $roleName, int|string $companyId): Role
+{
+    $teamKey = config('permission.column_names.team_foreign_key');
+
+    return Role::query()
+        ->where('name', $roleName)
+        ->where('guard_name', 'web')
+        ->where($teamKey, $companyId)
+        ->firstOrFail();
+}
+
+/**
+ * Assign a user to a team-scoped role for a company.
+ */
+function assignTeamRole(User $user, string $roleName, Company $company): void
+{
+    $role = teamRole($roleName, $company->getKey());
+    setPermissionsTeamId($company->getKey());
+    $user->assignRole($role);
+    setPermissionsTeamId(null);
 }

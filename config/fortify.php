@@ -73,7 +73,12 @@ return [
     |
     */
 
-    'home' => '/dashboard',
+    /*
+     * Default post-auth path. Users without a company are sent here; users who
+     * already belong to an organization are redirected to /dashboard by Fortify
+     * response classes in the application.
+     */
+    'home' => '/onboarding',
 
     /*
     |--------------------------------------------------------------------------

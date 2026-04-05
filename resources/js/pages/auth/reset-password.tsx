@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthLayout from '@/layouts/auth-layout';
+import { orionFieldClass, orionPrimaryButtonClass } from '@/lib/orion-auth-classes';
+import { cn } from '@/lib/utils';
 import { update } from '@/routes/password';
 
 type Props = {
@@ -29,14 +31,19 @@ export default function ResetPassword({ token, email }: Props) {
                 {({ processing, errors }) => (
                     <div className="grid gap-6">
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label
+                                htmlFor="email"
+                                className="text-[13px] text-muted-foreground"
+                            >
+                                Email
+                            </Label>
                             <Input
                                 id="email"
                                 type="email"
                                 name="email"
                                 autoComplete="email"
                                 value={email}
-                                className="mt-1 block w-full"
+                                className={cn(orionFieldClass, 'mt-1 block w-full')}
                                 readOnly
                             />
                             <InputError
@@ -46,12 +53,17 @@ export default function ResetPassword({ token, email }: Props) {
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="password">Password</Label>
+                            <Label
+                                htmlFor="password"
+                                className="text-[13px] text-muted-foreground"
+                            >
+                                Password
+                            </Label>
                             <PasswordInput
                                 id="password"
                                 name="password"
                                 autoComplete="new-password"
-                                className="mt-1 block w-full"
+                                className={cn(orionFieldClass, 'mt-1 block w-full')}
                                 autoFocus
                                 placeholder="Password"
                             />
@@ -59,14 +71,17 @@ export default function ResetPassword({ token, email }: Props) {
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="password_confirmation">
+                            <Label
+                                htmlFor="password_confirmation"
+                                className="text-[13px] text-muted-foreground"
+                            >
                                 Confirm password
                             </Label>
                             <PasswordInput
                                 id="password_confirmation"
                                 name="password_confirmation"
                                 autoComplete="new-password"
-                                className="mt-1 block w-full"
+                                className={cn(orionFieldClass, 'mt-1 block w-full')}
                                 placeholder="Confirm password"
                             />
                             <InputError
@@ -77,11 +92,13 @@ export default function ResetPassword({ token, email }: Props) {
 
                         <Button
                             type="submit"
-                            className="mt-4 w-full"
+                            className={cn('mt-4 w-full', orionPrimaryButtonClass)}
                             disabled={processing}
                             data-test="reset-password-button"
                         >
-                            {processing && <Spinner />}
+                            {processing && (
+                                <Spinner className="mr-2 text-primary-foreground" />
+                            )}
                             Reset password
                         </Button>
                     </div>

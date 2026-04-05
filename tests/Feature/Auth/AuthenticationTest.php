@@ -19,7 +19,47 @@ test('users can authenticate using the login screen', function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('onboarding', absolute: false));
+});
+
+test('end users without kyc are redirected to verify identity after login', function () {
+    $user = User::factory()->endUser()->create();
+
+    $response = $this->post(route('login.store'), [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('user.kyc.show', absolute: false));
+});
+
+test('kyc verified end users are redirected to wallet after login', function () {
+    $user = User::factory()->kycVerified()->create();
+
+    $response = $this->post(route('login.store'), [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('user.wallet.index', absolute: false));
+});
+
+test('end users without kyc are redirected from onboarding to verify identity', function () {
+    $user = User::factory()->endUser()->create();
+
+    $response = $this->actingAs($user)->get(route('onboarding'));
+
+    $response->assertRedirect(route('user.kyc.show', absolute: false));
+});
+
+test('kyc verified end users are redirected from onboarding to wallet', function () {
+    $user = User::factory()->kycVerified()->create();
+
+    $response = $this->actingAs($user)->get(route('onboarding'));
+
+    $response->assertRedirect(route('user.wallet.index', absolute: false));
 });
 
 test('users with two factor enabled are redirected to two factor challenge', function () {

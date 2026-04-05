@@ -18,6 +18,16 @@ trait PasswordValidationRules
     }
 
     /**
+     * Registration: single password field (no confirmation in UI).
+     *
+     * @return array<int, Rule|array<mixed>|string>
+     */
+    protected function passwordRegistrationRules(): array
+    {
+        return ['required', 'string', Password::default()];
+    }
+
+    /**
      * Get the validation rules used to validate the current password.
      *
      * @return array<int, Rule|array<mixed>|string>
