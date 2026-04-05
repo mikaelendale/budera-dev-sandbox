@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import type { ReactNode } from 'react';
 import { home } from '@/routes';
 import { ModeToggle } from '@/components/mode-toggle';
+import AppLogo from '@/components/app-logo';
 
 export type OrionAuthMode =
     | 'login'
@@ -16,20 +17,16 @@ export type OrionAuthMode =
 const headlines: Record<OrionAuthMode, ReactNode> = {
     login: (
         <>
-            We&apos;re watching the
+            Welcome back.
             <br />
-            darkness so you
-            <br />
-            don&apos;t have to
+            Agent financial identity awaits.
         </>
     ),
     register: (
         <>
-            Join the mission.
+            Join a world
             <br />
-            Claim your seat
-            <br />
-            in the dark.
+            where agents have identity.
         </>
     ),
     onboarding: (
@@ -119,50 +116,7 @@ export default function OrionAuthLayout({
                         href={home()}
                         className="flex shrink-0 items-center justify-center gap-2"
                     >
-                        <div className="h-[26px] w-[26px] shrink-0 text-primary">
-                            <svg viewBox="0 0 26 26" fill="none" aria-hidden>
-                                <circle
-                                    cx="13"
-                                    cy="13"
-                                    r="10"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeOpacity={0.7}
-                                    strokeWidth="1.2"
-                                />
-                                <ellipse
-                                    cx="13"
-                                    cy="13"
-                                    rx="5.5"
-                                    ry="10"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeOpacity={0.45}
-                                    strokeWidth="1"
-                                    transform="rotate(-30 13 13)"
-                                />
-                                <circle
-                                    cx="13"
-                                    cy="13"
-                                    r="3"
-                                    fill="currentColor"
-                                    fillOpacity={0.9}
-                                />
-                                <circle
-                                    cx="19"
-                                    cy="8"
-                                    r="1.2"
-                                    fill="currentColor"
-                                    fillOpacity={0.65}
-                                />
-                            </svg>
-                        </div>
-                        <span
-                            className="text-[17px] font-medium tracking-tight text-foreground/90"
-                            style={{ letterSpacing: '-0.02em' }}
-                        >
-                            {name}
-                        </span>
+                        <AppLogo/>
                     </Link>
 
                     <div className="flex w-full flex-col items-center">
