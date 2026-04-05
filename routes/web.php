@@ -31,9 +31,9 @@ use App\Http\Controllers\UserWalletController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::inertia('/', 'welcome', [
-    'canRegister' => Features::enabled(Features::registration()),
-])->name('home');
+Route::inertia('/', 'welcome', function () {
+   return redirect(route('dashboard'));
+})->name('home');
 
 Route::get('docs', [DocsController::class, 'index'])->name('docs.index');
 Route::get('docs/{page}', [DocsController::class, 'show'])
