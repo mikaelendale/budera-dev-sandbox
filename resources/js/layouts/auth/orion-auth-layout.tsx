@@ -16,18 +16,10 @@ export type OrionAuthMode =
 
 const headlines: Record<OrionAuthMode, ReactNode> = {
     login: (
-        <>
-            Welcome back.
-            <br />
-            Agent financial identity awaits.
-        </>
+        <>Welcome back.</>
     ),
     register: (
-        <>
-            Join a world
-            <br />
-            where agents have identity.
-        </>
+        <>The bank for your AI agents</>
     ),
     onboarding: (
         <>
